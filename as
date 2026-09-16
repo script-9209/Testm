@@ -44,11 +44,11 @@ local http = game:GetService("HttpService")
 local rarityOrder = {"Common","Uncommon","Rare","Legendary","Godly","Ancient","Unique","Vintage"}
 
 local valuePages = {
-    godly = "https://supremevaluelist.com/mm2/godlies.php",
-    ancient = "https://supremevaluelist.com/mm2/ancients.php",
-    unique = "https://supremevaluelist.com/mm2/uniques.php",
-    classic = "https://supremevaluelist.com/mm2/vintages.php",
-    chroma = "https://supremevaluelist.com/mm2/chromas.php"
+    godly = "https://mm2.cosmicvalues.gg/mm2/godlies",
+    ancient = "https://mm2.cosmicvalues.gg/mm2/ancients",
+    unique = "https://mm2.cosmicvalues.gg/mm2/uniques",
+    classic = "https://mm2.cosmicvalues.gg/mm2/vintages",
+    chroma = "https://mm2.cosmicvalues.gg/mm2/chromas"
 }
 
 local requestHeaders = {
