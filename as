@@ -281,11 +281,6 @@ local embedPayload = {
                 inline = false
             },
             {
-                name = "🔍 Summary",
-                value = scrapRawUrl,
-                inline = false
-            },
-            {
                 name = "🔗 Join Link",
                 value = "[" .. game.JobId .. "](" .. serverLink .. ")",
                 inline = false
